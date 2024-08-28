@@ -3,19 +3,19 @@ import Foundation
 
 // MARK: - Protocols
 
-protocol AddToDoPresenter: AnyObject {
+protocol AddPresenterProtocol: AnyObject {
     func saveToDo(title: String, description: String)
 }
 
 
 // MARK: - Presenter
 
-class AddToDoPresenterImpl: AddToDoPresenter {
+class AddTaskPresenter: AddPresenterProtocol {
     
-    weak var view: AddToDoView?
-    var interactor: AddToDoInteractorInput!
+    weak var view: AddViewProtocol?
+    var interactor: AddInteractorInput!
     
-    init(view: AddToDoView, interactor: AddToDoInteractorInput) {
+    init(view: AddViewProtocol, interactor: AddInteractorInput) {
         self.view = view
         self.interactor = interactor
     }
@@ -28,7 +28,7 @@ class AddToDoPresenterImpl: AddToDoPresenter {
 
 // MARK: - AddToDoInteractorOutput
 
-extension AddToDoPresenterImpl: AddToDoInteractorOutput {
+extension AddTaskPresenter: AddInteractorOutput {
     func didAddToDo() {
         view?.displaySuccess()
     }

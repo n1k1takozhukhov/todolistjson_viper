@@ -13,14 +13,14 @@
 		8D5508EF2C7F14A2000BE90A /* ToDoListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5508EE2C7F14A2000BE90A /* ToDoListPresenter.swift */; };
 		8D5508F22C7F14AD000BE90A /* ToDoListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5508F12C7F14AD000BE90A /* ToDoListInteractor.swift */; };
 		8D5508F52C7F14C0000BE90A /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5508F42C7F14C0000BE90A /* ToDoTableViewCell.swift */; };
-		8D5508F92C7F14DB000BE90A /* AddTaskRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5508F82C7F14DB000BE90A /* AddTaskRouter.swift */; };
+		8D5508F92C7F14DB000BE90A /* AddRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5508F82C7F14DB000BE90A /* AddRouter.swift */; };
 		8D5508FC2C7F14E5000BE90A /* AddToDoPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5508FB2C7F14E5000BE90A /* AddToDoPresenterImpl.swift */; };
-		8D5508FF2C7F14F0000BE90A /* AddToDoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5508FE2C7F14F0000BE90A /* AddToDoInteractor.swift */; };
-		8D5509022C7F14FC000BE90A /* AddToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5509012C7F14FC000BE90A /* AddToDoViewController.swift */; };
-		8D5509062C7F151A000BE90A /* EditToDoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5509052C7F151A000BE90A /* EditToDoRouter.swift */; };
-		8D5509092C7F152B000BE90A /* EditToDoPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5509082C7F152B000BE90A /* EditToDoPresenterImpl.swift */; };
-		8D55090C2C7F1536000BE90A /* EditToDoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55090B2C7F1536000BE90A /* EditToDoInteractor.swift */; };
-		8D55090F2C7F1540000BE90A /* EditToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55090E2C7F1540000BE90A /* EditToDoViewController.swift */; };
+		8D5508FF2C7F14F0000BE90A /* AddInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5508FE2C7F14F0000BE90A /* AddInteractor.swift */; };
+		8D5509022C7F14FC000BE90A /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5509012C7F14FC000BE90A /* AddViewController.swift */; };
+		8D5509062C7F151A000BE90A /* EditRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5509052C7F151A000BE90A /* EditRouter.swift */; };
+		8D5509092C7F152B000BE90A /* EditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5509082C7F152B000BE90A /* EditPresenter.swift */; };
+		8D55090C2C7F1536000BE90A /* EditInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55090B2C7F1536000BE90A /* EditInteractor.swift */; };
+		8D55090F2C7F1540000BE90A /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55090E2C7F1540000BE90A /* EditViewController.swift */; };
 		8DD786C82C7F114E00736CBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD786C72C7F114E00736CBF /* AppDelegate.swift */; };
 		8DD786CA2C7F114E00736CBF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD786C92C7F114E00736CBF /* SceneDelegate.swift */; };
 		8DD786CC2C7F114E00736CBF /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD786CB2C7F114E00736CBF /* ListViewController.swift */; };
@@ -57,14 +57,14 @@
 		8D5508EE2C7F14A2000BE90A /* ToDoListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListPresenter.swift; sourceTree = "<group>"; };
 		8D5508F12C7F14AD000BE90A /* ToDoListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListInteractor.swift; sourceTree = "<group>"; };
 		8D5508F42C7F14C0000BE90A /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
-		8D5508F82C7F14DB000BE90A /* AddTaskRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskRouter.swift; sourceTree = "<group>"; };
+		8D5508F82C7F14DB000BE90A /* AddRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRouter.swift; sourceTree = "<group>"; };
 		8D5508FB2C7F14E5000BE90A /* AddToDoPresenterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToDoPresenterImpl.swift; sourceTree = "<group>"; };
-		8D5508FE2C7F14F0000BE90A /* AddToDoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToDoInteractor.swift; sourceTree = "<group>"; };
-		8D5509012C7F14FC000BE90A /* AddToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToDoViewController.swift; sourceTree = "<group>"; };
-		8D5509052C7F151A000BE90A /* EditToDoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditToDoRouter.swift; sourceTree = "<group>"; };
-		8D5509082C7F152B000BE90A /* EditToDoPresenterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditToDoPresenterImpl.swift; sourceTree = "<group>"; };
-		8D55090B2C7F1536000BE90A /* EditToDoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditToDoInteractor.swift; sourceTree = "<group>"; };
-		8D55090E2C7F1540000BE90A /* EditToDoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditToDoViewController.swift; sourceTree = "<group>"; };
+		8D5508FE2C7F14F0000BE90A /* AddInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInteractor.swift; sourceTree = "<group>"; };
+		8D5509012C7F14FC000BE90A /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		8D5509052C7F151A000BE90A /* EditRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRouter.swift; sourceTree = "<group>"; };
+		8D5509082C7F152B000BE90A /* EditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresenter.swift; sourceTree = "<group>"; };
+		8D55090B2C7F1536000BE90A /* EditInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInteractor.swift; sourceTree = "<group>"; };
+		8D55090E2C7F1540000BE90A /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		8DD786C42C7F114E00736CBF /* todolist_json.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todolist_json.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD786C72C7F114E00736CBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8DD786C92C7F114E00736CBF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -163,87 +163,87 @@
 		8D5508F62C7F14D2000BE90A /* AddTaskScene */ = {
 			isa = PBXGroup;
 			children = (
-				8D5509002C7F14F8000BE90A /* AddTaskView */,
-				8D5508FD2C7F14ED000BE90A /* AddTaskInteractor */,
-				8D5508FA2C7F14E3000BE90A /* AddTaskPresenter */,
-				8D5508F72C7F14D6000BE90A /* AddTaskRouter */,
+				8D5509002C7F14F8000BE90A /* View */,
+				8D5508FD2C7F14ED000BE90A /* Interactor */,
+				8D5508FA2C7F14E3000BE90A /* Presenter */,
+				8D5508F72C7F14D6000BE90A /* Router */,
 			);
 			path = AddTaskScene;
 			sourceTree = "<group>";
 		};
-		8D5508F72C7F14D6000BE90A /* AddTaskRouter */ = {
+		8D5508F72C7F14D6000BE90A /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				8D5508F82C7F14DB000BE90A /* AddTaskRouter.swift */,
+				8D5508F82C7F14DB000BE90A /* AddRouter.swift */,
 			);
-			path = AddTaskRouter;
+			path = Router;
 			sourceTree = "<group>";
 		};
-		8D5508FA2C7F14E3000BE90A /* AddTaskPresenter */ = {
+		8D5508FA2C7F14E3000BE90A /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
 				8D5508FB2C7F14E5000BE90A /* AddToDoPresenterImpl.swift */,
 			);
-			path = AddTaskPresenter;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
-		8D5508FD2C7F14ED000BE90A /* AddTaskInteractor */ = {
+		8D5508FD2C7F14ED000BE90A /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				8D5508FE2C7F14F0000BE90A /* AddToDoInteractor.swift */,
+				8D5508FE2C7F14F0000BE90A /* AddInteractor.swift */,
 			);
-			path = AddTaskInteractor;
+			path = Interactor;
 			sourceTree = "<group>";
 		};
-		8D5509002C7F14F8000BE90A /* AddTaskView */ = {
+		8D5509002C7F14F8000BE90A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8D5509012C7F14FC000BE90A /* AddToDoViewController.swift */,
+				8D5509012C7F14FC000BE90A /* AddViewController.swift */,
 			);
-			path = AddTaskView;
+			path = View;
 			sourceTree = "<group>";
 		};
 		8D5509032C7F1506000BE90A /* EditTaskScene */ = {
 			isa = PBXGroup;
 			children = (
-				8D55090D2C7F153E000BE90A /* EditTaskView */,
-				8D55090A2C7F1533000BE90A /* EditTaskInteractor */,
-				8D5509072C7F1523000BE90A /* EditTaskPresenter */,
-				8D5509042C7F1515000BE90A /* EditTaskRouter */,
+				8D55090D2C7F153E000BE90A /* View */,
+				8D55090A2C7F1533000BE90A /* Interactor */,
+				8D5509072C7F1523000BE90A /* Presenter */,
+				8D5509042C7F1515000BE90A /* Router */,
 			);
 			path = EditTaskScene;
 			sourceTree = "<group>";
 		};
-		8D5509042C7F1515000BE90A /* EditTaskRouter */ = {
+		8D5509042C7F1515000BE90A /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				8D5509052C7F151A000BE90A /* EditToDoRouter.swift */,
+				8D5509052C7F151A000BE90A /* EditRouter.swift */,
 			);
-			path = EditTaskRouter;
+			path = Router;
 			sourceTree = "<group>";
 		};
-		8D5509072C7F1523000BE90A /* EditTaskPresenter */ = {
+		8D5509072C7F1523000BE90A /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				8D5509082C7F152B000BE90A /* EditToDoPresenterImpl.swift */,
+				8D5509082C7F152B000BE90A /* EditPresenter.swift */,
 			);
-			path = EditTaskPresenter;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
-		8D55090A2C7F1533000BE90A /* EditTaskInteractor */ = {
+		8D55090A2C7F1533000BE90A /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				8D55090B2C7F1536000BE90A /* EditToDoInteractor.swift */,
+				8D55090B2C7F1536000BE90A /* EditInteractor.swift */,
 			);
-			path = EditTaskInteractor;
+			path = Interactor;
 			sourceTree = "<group>";
 		};
-		8D55090D2C7F153E000BE90A /* EditTaskView */ = {
+		8D55090D2C7F153E000BE90A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8D55090E2C7F1540000BE90A /* EditToDoViewController.swift */,
+				8D55090E2C7F1540000BE90A /* EditViewController.swift */,
 			);
-			path = EditTaskView;
+			path = View;
 			sourceTree = "<group>";
 		};
 		8D5509102C7F1783000BE90A /* CoreData */ = {
@@ -453,21 +453,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D5509022C7F14FC000BE90A /* AddToDoViewController.swift in Sources */,
+				8D5509022C7F14FC000BE90A /* AddViewController.swift in Sources */,
 				8D5508FC2C7F14E5000BE90A /* AddToDoPresenterImpl.swift in Sources */,
 				8DD786CC2C7F114E00736CBF /* ListViewController.swift in Sources */,
 				8D5508F52C7F14C0000BE90A /* ToDoTableViewCell.swift in Sources */,
-				8D55090F2C7F1540000BE90A /* EditToDoViewController.swift in Sources */,
-				8D55090C2C7F1536000BE90A /* EditToDoInteractor.swift in Sources */,
+				8D55090F2C7F1540000BE90A /* EditViewController.swift in Sources */,
+				8D55090C2C7F1536000BE90A /* EditInteractor.swift in Sources */,
 				8DD786D22C7F114E00736CBF /* todolist_json.xcdatamodeld in Sources */,
 				8DD786C82C7F114E00736CBF /* AppDelegate.swift in Sources */,
 				8D5508EA2C7F148D000BE90A /* CoreDataManager.swift in Sources */,
-				8D5509062C7F151A000BE90A /* EditToDoRouter.swift in Sources */,
-				8D5508FF2C7F14F0000BE90A /* AddToDoInteractor.swift in Sources */,
-				8D5508F92C7F14DB000BE90A /* AddTaskRouter.swift in Sources */,
+				8D5509062C7F151A000BE90A /* EditRouter.swift in Sources */,
+				8D5508FF2C7F14F0000BE90A /* AddInteractor.swift in Sources */,
+				8D5508F92C7F14DB000BE90A /* AddRouter.swift in Sources */,
 				8DD786FC2C7F143500736CBF /* ToDoItem+CoreDataClass.swift in Sources */,
 				8DD786FD2C7F143500736CBF /* ToDoItem+CoreDataProperties.swift in Sources */,
-				8D5509092C7F152B000BE90A /* EditToDoPresenterImpl.swift in Sources */,
+				8D5509092C7F152B000BE90A /* EditPresenter.swift in Sources */,
 				8D5508EC2C7F1492000BE90A /* Todo.swift in Sources */,
 				8DD786CA2C7F114E00736CBF /* SceneDelegate.swift in Sources */,
 				8D5508EF2C7F14A2000BE90A /* ToDoListPresenter.swift in Sources */,

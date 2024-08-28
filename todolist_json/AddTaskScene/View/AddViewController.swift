@@ -3,7 +3,7 @@ import UIKit
 
 // MARK: - Protocols
 
-protocol EditToDoView: AnyObject {
+protocol AddViewProtocol: AnyObject {
     func displaySuccess()
     func displayError(_ message: String)
 }
@@ -11,15 +11,14 @@ protocol EditToDoView: AnyObject {
 
 // MARK: - ViewController
 
-class EditToDoViewController: UIViewController {
+class AddViewController: UIViewController {
     
-    var presenter: EditToDoPresenter?
+    var presenter: AddPresenterProtocol?
     var rootPresenter: ToDoListPresenter?
-    var toDoItem: ToDoItem?
     
     private let titleTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Title"
+        textField.placeholder = "Enter title"
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -47,7 +46,7 @@ class EditToDoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Edit ToDo"
+        title = "Add New ToDo"
         view.backgroundColor = .white
         
         view.addSubview(titleTextField)
@@ -55,9 +54,6 @@ class EditToDoViewController: UIViewController {
         view.addSubview(saveButton)
         
         setupConstraints()
-        
-        titleTextField.text = toDoItem?.title
-        descriptionTextView.text = toDoItem?.todoDescription
         
         saveButton.addTarget(self, action: #selector(saveToDo), for: .touchUpInside)
         
@@ -75,7 +71,7 @@ class EditToDoViewController: UIViewController {
             descriptionTextView.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 20),
             descriptionTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             descriptionTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            descriptionTextView.heightAnchor.constraint(equalToConstant: 150),
+            descriptionTextView.heightAnchor.constraint(equalToConstant: 100),
             
             saveButton.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: 20),
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -85,8 +81,11 @@ class EditToDoViewController: UIViewController {
     }
     
     @objc private func saveToDo() {
-        guard let toDoItem = toDoItem else { return }
-        presenter?.saveToDo(toDoItem: toDoItem, title: titleTextField.text ?? "", description: descriptionTextView.text ?? "")
+        guard let title = titleTextField.text, !title.isEmpty else {
+            displayError("Title cannot be empty")
+            return
+        }
+        presenter?.saveToDo(title: title, description: descriptionTextView.text ?? "")
     }
     
     @objc private func dismissKeyboard() {
@@ -96,13 +95,14 @@ class EditToDoViewController: UIViewController {
 }
 
 
-// MARK: - EditToDoView
-extension EditToDoViewController: EditToDoView {
+// MARK: - AddToDoView
+
+extension AddViewController: AddViewProtocol {
     func displaySuccess() {
         dismiss(animated: true, completion: { self.rootPresenter?.fetchToDos() })
     }
     
     func displayError(_ message: String) {
-        print("Error editing todo.")
+        print("Error adding todo")
     }
 }

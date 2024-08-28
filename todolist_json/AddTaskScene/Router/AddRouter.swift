@@ -3,15 +3,15 @@ import UIKit
 
 // MARK: - Router
 
-class AddToDoRouter {
+class AddRouter {
     
     weak var viewController: UIViewController?
     
     static func assembleModule(rootPresenter: ToDoListPresenter) -> UIViewController {
-        let view = AddToDoViewController()
-        let interactor = AddToDoInteractor()
-        let presenter = AddToDoPresenterImpl(view: view, interactor: interactor)
-        let router = AddToDoRouter()
+        let view = AddViewController()
+        let interactor = AddInteractor()
+        let presenter = AddTaskPresenter(view: view, interactor: interactor)
+        let router = AddRouter()
         
         view.presenter = presenter
         view.rootPresenter = rootPresenter

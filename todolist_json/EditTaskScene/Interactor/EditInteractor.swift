@@ -3,11 +3,11 @@ import Foundation
 
 // MARK: - Protocols
 
-protocol EditToDoInteractorInput {
+protocol EditInteractorInput {
     func updateToDoItem(toDo: ToDoItem, title: String, description: String, isCompleted: Bool)
 }
 
-protocol EditToDoInteractorOutput: AnyObject {
+protocol EditInteractorOutput: AnyObject {
     func didUpdateToDo()
     func didFailToUpdateToDo(with error: Error)
 }
@@ -15,8 +15,8 @@ protocol EditToDoInteractorOutput: AnyObject {
 
 // MARK: - Interactor
 
-class EditToDoInteractor: EditToDoInteractorInput {
-    weak var output: EditToDoInteractorOutput?
+class EditInteractor: EditInteractorInput {
+    weak var output: EditInteractorOutput?
     
     func updateToDoItem(toDo: ToDoItem, title: String, description: String, isCompleted: Bool) {
         DispatchQueue.global(qos: .background).async { [weak self] in

@@ -1,8 +1,5 @@
 import UIKit
 
-
-// MARK: - ViewController
-
 class ToDoListViewController: UIViewController {
     
     var presenter: ToDoListPresenter?
@@ -33,7 +30,6 @@ class ToDoListViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        // Initialize the presenter
         presenter?.viewDidLoad()
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToDo))
@@ -52,7 +48,7 @@ class ToDoListViewController: UIViewController {
 
 // MARK: - ToDoListView
 
-extension ToDoListViewController: ToDoListView {
+extension ToDoListViewController: ToDoListViewProtocol {
     func showToDos(_ toDos: [ToDoItem]) {
         self.toDos = toDos
         DispatchQueue.main.async {

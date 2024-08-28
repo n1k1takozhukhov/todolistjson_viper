@@ -1,7 +1,5 @@
 import UIKit
 
-// MARK: - Router
-
 class ToDoListRouter {
     
     weak var viewController: UIViewController?
@@ -20,16 +18,14 @@ class ToDoListRouter {
     }
     
     func navigateToAddToDo(rootPresenter: ToDoListPresenter) {
-        let addToDoVC = AddToDoRouter.assembleModule(rootPresenter: rootPresenter)
+        let addToDoVC = AddRouter.assembleModule(rootPresenter: rootPresenter)
         addToDoVC.modalPresentationStyle = .pageSheet
         viewController?.present(addToDoVC, animated: true, completion: nil)
     }
     
     func navigateToEditToDo(for toDo: ToDoItem, rootPresenter: ToDoListPresenter) {
-        let editToDoVC = EditToDoRouter.assembleModule(toDoItem: toDo, rootPresenter: rootPresenter)
+        let editToDoVC = EditRouter.assembleModule(toDoItem: toDo, rootPresenter: rootPresenter)
         editToDoVC.modalPresentationStyle = .pageSheet
         viewController?.present(editToDoVC, animated: true, completion: nil)
     }
 }
-
-
