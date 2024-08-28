@@ -1,17 +1,11 @@
 import UIKit
 
-
-// MARK: - Protocols
-
 protocol EditViewProtocol: AnyObject {
     func displaySuccess()
     func displayError(_ message: String)
 }
 
-
-// MARK: - ViewController
-
-class EditViewController: UIViewController {
+final class EditViewController: UIViewController {
     
     var presenter: EditPresenterProtocol?
     var rootPresenter: ToDoListPresenter?
@@ -95,8 +89,6 @@ class EditViewController: UIViewController {
     }
 }
 
-
-// MARK: - EditToDoView
 extension EditViewController: EditViewProtocol {
     func displaySuccess() {
         dismiss(animated: true, completion: { self.rootPresenter?.fetchToDos() })

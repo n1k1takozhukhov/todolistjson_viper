@@ -4,18 +4,20 @@ import CoreData
 public final class CoreDataManager: NSObject {
     
     static let shared = CoreDataManager()
-    private override init() {}
-    
-    private var appDelegate: AppDelegate {
-        return UIApplication.shared.delegate as! AppDelegate
-    }
-    
-    private var context: NSManagedObjectContext {
-        return appDelegate.persistentContainer.viewContext
-    }
+    private lazy var context = persistentContainer.viewContext
     
     // MARK: - ToDo CRUD Operations
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "todolist_json")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
     
+    // MARK: - Core Data stack
     public func createToDo(title: String, description: String?, createdDate: Date, isCompleted: Bool) {
         guard let toDoEntityDescription = NSEntityDescription.entity(forEntityName: "ToDoItem", in: context) else { return }
         

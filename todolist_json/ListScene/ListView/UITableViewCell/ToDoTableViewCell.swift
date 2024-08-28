@@ -1,6 +1,6 @@
 import UIKit
 
-class ToDoTableViewCell: UITableViewCell {
+final class ToDoTableViewCell: UITableViewCell {
     
     static let identifier = "ToDoTableViewCell"
 

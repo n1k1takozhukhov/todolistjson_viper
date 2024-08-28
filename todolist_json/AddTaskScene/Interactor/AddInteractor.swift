@@ -1,8 +1,5 @@
 import Foundation
 
-
-// MARK: - Protocols
-
 protocol AddInteractorInput {
     func addToDoItem(title: String, description: String)
 }
@@ -12,10 +9,7 @@ protocol AddInteractorOutput: AnyObject {
     func didFailToAddToDo(with error: Error)
 }
 
-
-// MARK: - Interactor
-
-class AddInteractor: AddInteractorInput {
+final class AddInteractor: AddInteractorInput {
     weak var output: AddInteractorOutput?
     
     func addToDoItem(title: String, description: String) {

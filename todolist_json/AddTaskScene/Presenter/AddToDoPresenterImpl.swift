@@ -1,16 +1,11 @@
 import Foundation
 
 
-// MARK: - Protocols
-
 protocol AddPresenterProtocol: AnyObject {
     func saveToDo(title: String, description: String)
 }
 
-
-// MARK: - Presenter
-
-class AddTaskPresenter: AddPresenterProtocol {
+final class AddTaskPresenter: AddPresenterProtocol {
     
     weak var view: AddViewProtocol?
     var interactor: AddInteractorInput!
@@ -24,9 +19,6 @@ class AddTaskPresenter: AddPresenterProtocol {
         interactor.addToDoItem(title: title, description: description)
     }
 }
-
-
-// MARK: - AddToDoInteractorOutput
 
 extension AddTaskPresenter: AddInteractorOutput {
     func didAddToDo() {

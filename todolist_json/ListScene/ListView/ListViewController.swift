@@ -5,7 +5,6 @@ class ToDoListViewController: UIViewController {
     var presenter: ToDoListPresenter?
     var toDos: [ToDoItem] = []
     
-    // UITableView
     private let tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -45,9 +44,6 @@ class ToDoListViewController: UIViewController {
     }
 }
 
-
-// MARK: - ToDoListView
-
 extension ToDoListViewController: ToDoListViewProtocol {
     func showToDos(_ toDos: [ToDoItem]) {
         self.toDos = toDos
@@ -60,9 +56,6 @@ extension ToDoListViewController: ToDoListViewProtocol {
         print("Error showing todos.")
     }
 }
-
-
-// MARK: -  UITableViewDataSource
 
 extension ToDoListViewController: UITableViewDataSource {
     
@@ -80,9 +73,6 @@ extension ToDoListViewController: UITableViewDataSource {
         return cell
     }
 }
-
-
-// MARK: - UITableViewDelegate
 
 extension ToDoListViewController: UITableViewDelegate {
     
@@ -129,9 +119,6 @@ extension ToDoListViewController: UITableViewDelegate {
         return configuration
     }
 }
-
-
-// MARK: - AddToDo
 
 extension ToDoListViewController {
     func didAddToDo() {

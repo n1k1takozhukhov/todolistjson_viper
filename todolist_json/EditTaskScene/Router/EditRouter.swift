@@ -1,10 +1,6 @@
 import UIKit
 
-
-// MARK: - Router
-
-class EditRouter {
-    
+final class EditRouter {
     weak var viewController: UIViewController?
     
     static func assembleModule(toDoItem: ToDoItem, rootPresenter: ToDoListPresenter) -> UIViewController {

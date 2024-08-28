@@ -13,7 +13,6 @@ protocol ToDoListInteractorOutput: AnyObject {
     func didUpdateToDo()
 }
 
-
 class ToDoListInteractor: ToDoListInteractorInput {
     weak var output: ToDoListInteractorOutput?
     

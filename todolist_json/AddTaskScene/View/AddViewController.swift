@@ -1,17 +1,11 @@
 import UIKit
 
-
-// MARK: - Protocols
-
 protocol AddViewProtocol: AnyObject {
     func displaySuccess()
     func displayError(_ message: String)
 }
 
-
-// MARK: - ViewController
-
-class AddViewController: UIViewController {
+final class AddViewController: UIViewController {
     
     var presenter: AddPresenterProtocol?
     var rootPresenter: ToDoListPresenter?
@@ -93,9 +87,6 @@ class AddViewController: UIViewController {
         descriptionTextView.resignFirstResponder()
     }
 }
-
-
-// MARK: - AddToDoView
 
 extension AddViewController: AddViewProtocol {
     func displaySuccess() {
