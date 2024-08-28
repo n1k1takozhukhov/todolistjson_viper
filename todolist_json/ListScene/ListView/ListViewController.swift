@@ -3,50 +3,35 @@ import UIKit
 class ToDoListViewController: UIViewController {
     
     var presenter: ToDoListPresenter?
-    var toDos: [ToDoItem] = []
+    var todo: [ToDoItem] = []
     
-    private let tableView: UITableView = {
-        let table = UITableView()
-        table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(ToDoTableViewCell.self, forCellReuseIdentifier: ToDoTableViewCell.identifier)
-        return table
-    }()
+    private lazy var tableView = makeTableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupConstrain()
+        updateUI()
+        presenter?.viewDidLoad()
+    }
+    
+    private func updateUI() {
         title = "ToDo List"
-        view.backgroundColor = .white
-        
-        view.addSubview(tableView)
+        view.backgroundColor = .systemBackground
+        tableView.register(ToDoTableViewCell.self, forCellReuseIdentifier: ToDoTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-        
-        presenter?.viewDidLoad()
-        
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addToDo))
-        navigationItem.rightBarButtonItem = addButton
-    }
-    
-    @objc private func fetchToDos() {
-        presenter?.fetchToDos()
-    }
-    
-    @objc private func addToDo() {
-        presenter?.showAddToDo()
+        let actionRightBarButtonItem = UIAction(title: "", image: UIImage(systemName: "envelope")) { [weak self] _ in
+            guard let self = self else { return }
+            self.presenter?.showAddToDo()
+        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(primaryAction: actionRightBarButtonItem)
     }
 }
 
 extension ToDoListViewController: ToDoListViewProtocol {
     func showToDos(_ toDos: [ToDoItem]) {
-        self.toDos = toDos
+        self.todo = toDos
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -57,10 +42,11 @@ extension ToDoListViewController: ToDoListViewProtocol {
     }
 }
 
+
+//MARK: - UITableView
 extension ToDoListViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return toDos.count
+        return todo.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,55 +54,40 @@ extension ToDoListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let todo = toDos[indexPath.row]
+        let todo = todo[indexPath.row]
         cell.configure(with: todo)
         return cell
     }
 }
 
 extension ToDoListViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let selectedToDo = toDos[indexPath.row]
+        let selectedToDo = todo[indexPath.row]
         presenter?.showEditToDo(for: selectedToDo)
     }
     
-    // Swipe to delete functionality using trailing swipe actions
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completionHandler in
             guard let self = self else { return }
-            
-            let toDoToDelete = self.toDos[indexPath.row]
+            let toDoToDelete = self.todo[indexPath.row]
             self.presenter?.deleteToDoItem(toDoToDelete)
-            
             completionHandler(true)
         }
-        
         deleteAction.backgroundColor = .systemRed
-        
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-        return configuration
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
-    // Swipe to complete functionality using leading swipe actions
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let toDo = toDos[indexPath.row]
-        let title = toDo.isCompleted ? "Not Completed" : "Completed"
-        
-        let completeAction = UIContextualAction(style: .normal, title: title) { [weak self] _, _, completionHandler in
+        let todo = todo[indexPath.row]
+        let completeAction = UIContextualAction(style: .normal, title: "Completed") { [weak self] _, _, completionHandler in
             guard let self = self else { return }
-            
-            self.presenter?.toggleComplete(toDo)
-            
+            self.presenter?.toggleComplete(todo)
             completionHandler(true)
         }
-        
-        completeAction.backgroundColor = toDo.isCompleted ? .systemOrange : .systemGreen
-        
-        let configuration = UISwipeActionsConfiguration(actions: [completeAction])
-        return configuration
+        completeAction.backgroundColor = todo.isCompleted ? .systemGray2 : .systemGreen
+        return UISwipeActionsConfiguration(actions: [completeAction])
     }
 }
 
@@ -125,3 +96,29 @@ extension ToDoListViewController {
         presenter?.fetchToDos()
     }
 }
+
+private extension ToDoListViewController {
+    func setupConstrain() {
+        setupTableView()
+    }
+    
+    func setupTableView() {
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+}
+
+private extension ToDoListViewController {
+    func makeTableView() -> UITableView {
+        let view = UITableView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
+}
+

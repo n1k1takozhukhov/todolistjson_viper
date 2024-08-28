@@ -17,13 +17,13 @@ final class ToDoListRouter {
         return view
     }
     
-    func navigateToAddToDo(rootPresenter: ToDoListPresenter) {
+    func AddToDoViewControoler(rootPresenter: ToDoListPresenter) {
         let addToDoVC = AddRouter.assembleModule(rootPresenter: rootPresenter)
         addToDoVC.modalPresentationStyle = .pageSheet
         viewController?.present(addToDoVC, animated: true, completion: nil)
     }
     
-    func navigateToEditToDo(for toDo: ToDoItem, rootPresenter: ToDoListPresenter) {
+    func EditToDoViewControoler(for toDo: ToDoItem, rootPresenter: ToDoListPresenter) {
         let editToDoVC = EditRouter.assembleModule(toDoItem: toDo, rootPresenter: rootPresenter)
         editToDoVC.modalPresentationStyle = .pageSheet
         viewController?.present(editToDoVC, animated: true, completion: nil)

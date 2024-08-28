@@ -50,7 +50,7 @@ public final class CoreDataManager: NSObject {
                 for todo in todoResponse.todos {
                     self.createToDo(title: todo.todo, description: nil, createdDate: Date(), isCompleted: todo.completed)
                 }
-                let toDos = self.fetchToDos()
+                let toDos = self.fetchToDo()
                 completion(.success(toDos))
             } catch let decodingError {
                 completion(.failure(decodingError))
@@ -60,7 +60,7 @@ public final class CoreDataManager: NSObject {
         task.resume()
     }
     
-    public func fetchToDos() -> [ToDoItem] {
+    public func fetchToDo() -> [ToDoItem] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ToDoItem")
         let sortDescriptor = NSSortDescriptor(key: "createdDate", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
@@ -70,18 +70,6 @@ public final class CoreDataManager: NSObject {
         } catch {
             print("Failed to fetch ToDos: \(error)")
             return []
-        }
-    }
-    
-    public func fetchToDo(with id: UUID) -> ToDoItem? {
-        let fetchRequest = NSFetchRequest<ToDoItem>(entityName: "ToDoItem")
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
-        
-        do {
-            return try context.fetch(fetchRequest).first
-        } catch {
-            print("Failed to fetch ToDo with id \(id): \(error)")
-            return nil
         }
     }
     

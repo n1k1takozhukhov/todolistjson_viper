@@ -15,7 +15,9 @@ protocol ToDoListPresenterInput {
 }
 
 
-final class ToDoListPresenter {
+// MARK: - Presenter
+
+class ToDoListPresenter {
     
     weak var view: ToDoListViewProtocol?
     var interactor: ToDoListInteractorInput?
@@ -28,21 +30,24 @@ final class ToDoListPresenter {
     }
 }
 
+
+// MARK: - Interactor Input
+
 extension ToDoListPresenter: ToDoListPresenterInput {
     func viewDidLoad() {
         fetchToDos()
     }
     
     func fetchToDos() {
-        interactor?.fetchToDos()
+        interactor?.fetchToDo()
     }
     
     func showAddToDo() {
-        router?.navigateToAddToDo(rootPresenter: self)
+        router?.AddToDoViewControoler(rootPresenter: self)
     }
     
     func showEditToDo(for toDo: ToDoItem) {
-        router?.navigateToEditToDo(for: toDo, rootPresenter: self)
+        router?.EditToDoViewControoler(for: toDo, rootPresenter: self)
     }
     
     func deleteToDoItem(_ toDo: ToDoItem) {
@@ -53,6 +58,9 @@ extension ToDoListPresenter: ToDoListPresenterInput {
         interactor?.toggleComplete(toDo)
     }
 }
+
+
+// MARK: - Interactor Output
 
 extension ToDoListPresenter: ToDoListInteractorOutput {
     func didFetchToDos(_ toDos: [ToDoItem]) {
