@@ -2,8 +2,8 @@ import Foundation
 
 protocol ToDoListInteractorInput {
     func fetchToDo()
-    func addToDoItem(title: String, description: String, isCompleted: Bool)
-    func updateToDoItem(toDo: ToDoItem, title: String, description: String, isCompleted: Bool)
+    func addToDoItem(title: String, description: String, createdDate: Date, isCompleted: Bool)
+    func updateToDoItem(toDo: ToDoItem, title: String, description: String, createdDate: Date, isCompleted: Bool)
     func deleteToDoItem(toDo: ToDoItem)
     func toggleComplete(_ toDo: ToDoItem)
 }
@@ -41,7 +41,7 @@ final class ToDoListInteractor: ToDoListInteractorInput {
         }
     }
     
-    func addToDoItem(title: String, description: String, isCompleted: Bool) {
+    func addToDoItem(title: String, description: String, createdDate: Date, isCompleted: Bool) {
         DispatchQueue.global(qos: .background).async {
             CoreDataManager.shared.createToDo(title: title, description: description, createdDate: Date(), isCompleted: isCompleted)
             DispatchQueue.main.async {
@@ -50,9 +50,9 @@ final class ToDoListInteractor: ToDoListInteractorInput {
         }
     }
     
-    func updateToDoItem(toDo: ToDoItem, title: String, description: String, isCompleted: Bool) {
+    func updateToDoItem(toDo: ToDoItem, title: String, description: String, createdDate: Date, isCompleted: Bool) {
         DispatchQueue.global(qos: .background).async {
-            CoreDataManager.shared.updateToDo(toDo: toDo, title: title, description: description, isCompleted: isCompleted)
+            CoreDataManager.shared.updateToDo(toDo: toDo, title: title, description: description, createdDate: createdDate, isCompleted: isCompleted)
             DispatchQueue.main.async {
                 self.output?.didUpdateToDo()
             }
@@ -72,7 +72,7 @@ final class ToDoListInteractor: ToDoListInteractorInput {
         DispatchQueue.global(qos: .background).async {
             let newStatus = !toDo.isCompleted
             toDo.isCompleted = newStatus
-            CoreDataManager.shared.updateToDo(toDo: toDo, title: toDo.title ?? "", description: toDo.todoDescription, isCompleted: newStatus)
+            CoreDataManager.shared.updateToDo(toDo: toDo, title: toDo.title ?? "", description: toDo.todoDescription, createdDate: toDo.createdDate ?? Date(), isCompleted: newStatus)
             DispatchQueue.main.async {
                 self.output?.didUpdateToDo()
             }

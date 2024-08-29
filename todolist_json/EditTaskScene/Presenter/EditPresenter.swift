@@ -1,7 +1,7 @@
 import Foundation
 
 protocol EditPresenterProtocol: AnyObject {
-    func saveToDo(toDoItem: ToDoItem, title: String, description: String)
+    func saveToDo(toDoItem: ToDoItem, title: String, createdDate: Date, description: String)
 }
 
 final class EditPresenter: EditPresenterProtocol {
@@ -14,8 +14,8 @@ final class EditPresenter: EditPresenterProtocol {
         self.interactor = interactor
     }
     
-    func saveToDo(toDoItem: ToDoItem, title: String, description: String) {
-        interactor.updateToDoItem(toDo: toDoItem, title: title, description: description, isCompleted: toDoItem.isCompleted)
+    func saveToDo(toDoItem: ToDoItem, title: String, createdDate: Date, description: String) {
+        interactor.updateToDoItem(toDo: toDoItem, title: title, description: description, createdDate: createdDate, isCompleted: toDoItem.isCompleted)
     }
 }
 

@@ -11,5 +11,6 @@ struct Todo: Decodable {
     let id: Int
     let todo: String
     let completed: Bool
+    let createdDate: Date
     let userId: Int
 }

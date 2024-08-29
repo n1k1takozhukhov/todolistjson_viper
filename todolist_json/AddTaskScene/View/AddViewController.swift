@@ -6,47 +6,56 @@ protocol AddViewProtocol: AnyObject {
 }
 
 final class AddViewController: UIViewController {
-    
     var presenter: AddPresenterProtocol?
     var rootPresenter: ToDoListPresenter?
     
+    private let toDoTitleLabel = makeTitleLabel()
     private let titleTextField = makeTextField()
+    private let dateTitleLabel = makeTitleLabel()
+    private let dateTextField = makeTextField()
+    private let datePicker = makeDatePicker()
+    private let descriptionTitleLabel = makeTitleLabel()
     private let descriptionTextView = makeTextView()
     private lazy var saveButton = makeButton()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupConstraint()
         updateUI()
+    }
+    
+    private func updateUI() {
+        title = "Add View"
+        view.backgroundColor = .systemBackground
+        toDoTitleLabel.text = "title".uppercased()
+        titleTextField.placeholder = "Enter title"
+        dateTitleLabel.text = "date".uppercased()
+        dateTextField.placeholder = "Enter date"
+        dateTextField.inputView = datePicker
+        descriptionTitleLabel.text = "description".uppercased()
+
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.addAction(UIAction { [weak self] _ in
+            guard let self = self else { return }
+            self.didTapSaveToDo()
+            self.displaySuccess()
+        }, for: .touchUpInside)
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
     }
 
-    private func updateUI() {
-        title = "Add View"
-        view.backgroundColor = .white
-        titleTextField.placeholder = "Enter title"
-        saveButton.setTitle("Save", for: .normal)
-        saveButton.addAction(UIAction { [weak self] _ in
-            guard let self = self else { return }
-            self.didTapSaveToDo()
-            displaySuccess()
-        }, for: .touchUpInside)
-    }
-    
     private func didTapSaveToDo() {
         guard let title = titleTextField.text, !title.isEmpty else {
             displayError("Title cannot be empty")
             return
         }
-        presenter?.saveToDo(title: title, description: descriptionTextView.text ?? "")
+        presenter?.saveToDo(title: title, description: descriptionTextView.text ?? "", createdDate: datePicker.date)
     }
     
     @objc private func dismissKeyboard() {
-        titleTextField.resignFirstResponder()
-        descriptionTextView.resignFirstResponder()
+        view.endEditing(true)
     }
 }
 
@@ -56,58 +65,92 @@ extension AddViewController: AddViewProtocol {
     }
     
     func displayError(_ message: String) {
-        print("Error adding todo")
+        print("Error adding todo: \(message)")
     }
 }
-
 
 private extension AddViewController {
     func setupConstraint() {
         setupTitleTextField()
+        setupDateTextField()
         setupDescriptionTextView()
         setupSaveButton()
     }
     
     func setupTitleTextField() {
+        view.addSubview(toDoTitleLabel)
         view.addSubview(titleTextField)
-
+        
         NSLayoutConstraint.activate([
-            titleTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            titleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            titleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            toDoTitleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            toDoTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            toDoTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+
+            titleTextField.topAnchor.constraint(equalTo: toDoTitleLabel.bottomAnchor, constant: 10),
+            titleTextField.leadingAnchor.constraint(equalTo: toDoTitleLabel.leadingAnchor),
+            titleTextField.trailingAnchor.constraint(equalTo: toDoTitleLabel.trailingAnchor)
+        ])
+    }
+    
+    func setupDateTextField() {
+        view.addSubview(dateTitleLabel)
+        view.addSubview(dateTextField)
+        
+        NSLayoutConstraint.activate([
+            dateTitleLabel.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 20),
+            dateTitleLabel.leadingAnchor.constraint(equalTo: toDoTitleLabel.leadingAnchor),
+            dateTitleLabel.trailingAnchor.constraint(equalTo: toDoTitleLabel.trailingAnchor),
+            
+            dateTextField.topAnchor.constraint(equalTo: dateTitleLabel.bottomAnchor, constant: 10),
+            dateTextField.leadingAnchor.constraint(equalTo: toDoTitleLabel.leadingAnchor),
+            dateTextField.trailingAnchor.constraint(equalTo: toDoTitleLabel.trailingAnchor)
         ])
     }
     
     func setupDescriptionTextView() {
+        view.addSubview(descriptionTitleLabel)
         view.addSubview(descriptionTextView)
- 
+        
         NSLayoutConstraint.activate([
-            descriptionTextView.topAnchor.constraint(equalTo: titleTextField.bottomAnchor, constant: 20),
-            descriptionTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            descriptionTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            descriptionTitleLabel.topAnchor.constraint(equalTo: dateTextField.bottomAnchor, constant: 20),
+            descriptionTitleLabel.leadingAnchor.constraint(equalTo: toDoTitleLabel.leadingAnchor),
+            descriptionTitleLabel.trailingAnchor.constraint(equalTo: toDoTitleLabel.trailingAnchor),
+            
+            descriptionTextView.topAnchor.constraint(equalTo: descriptionTitleLabel.bottomAnchor, constant: 10),
+            descriptionTextView.leadingAnchor.constraint(equalTo: toDoTitleLabel.leadingAnchor),
+            descriptionTextView.trailingAnchor.constraint(equalTo: toDoTitleLabel.trailingAnchor),
             descriptionTextView.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
     
     func setupSaveButton() {
         view.addSubview(saveButton)
-
+        
         NSLayoutConstraint.activate([
             saveButton.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: 20),
-            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            saveButton.heightAnchor.constraint(equalToConstant: 32)
+            saveButton.leadingAnchor.constraint(equalTo: toDoTitleLabel.leadingAnchor),
+            saveButton.trailingAnchor.constraint(equalTo: toDoTitleLabel.trailingAnchor),
+            saveButton.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 }
 
+
 private extension AddViewController {
+    static func makeTitleLabel() -> UILabel {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = .systemFont(ofSize: 18)
+        return view
+    }
+    
     static func makeTextField() -> UITextField {
         let view = UITextField()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.textAlignment = .left
         view.borderStyle = .roundedRect
         view.font = .systemFont(ofSize: 16)
+        view.backgroundColor = .tertiaryGray
         return view
     }
     
@@ -115,9 +158,7 @@ private extension AddViewController {
         let view = UITextView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .systemFont(ofSize: 16)
-        view.isScrollEnabled = true
-        view.layer.borderColor = UIColor.lightGray.cgColor
-        view.layer.borderWidth = 1
+        view.backgroundColor = .tertiaryGray
         view.layer.cornerRadius = 5
         return view
     }
@@ -125,9 +166,19 @@ private extension AddViewController {
     func makeButton() -> UIButton {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(.systemBackground, for: .normal)
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 5
         return button
+    }
+    
+    static func makeDatePicker() -> UIDatePicker {
+        let view = UIDatePicker()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.datePickerMode = .date
+        view.preferredDatePickerStyle = .wheels
+        view.backgroundColor = .systemBackground
+        view.tintColor = .blue
+        return view
     }
 }

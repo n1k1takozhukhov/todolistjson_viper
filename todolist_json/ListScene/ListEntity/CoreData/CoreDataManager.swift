@@ -48,7 +48,7 @@ public final class CoreDataManager: NSObject {
             do {
                 let todoResponse = try JSONDecoder().decode(TodoResponse.self, from: data)
                 for todo in todoResponse.todos {
-                    self.createToDo(title: todo.todo, description: nil, createdDate: Date(), isCompleted: todo.completed)
+                    self.createToDo(title: todo.todo, description: nil, createdDate: todo.createdDate, isCompleted: todo.completed)
                 }
                 let toDos = self.fetchToDo()
                 completion(.success(toDos))
@@ -73,9 +73,10 @@ public final class CoreDataManager: NSObject {
         }
     }
     
-    public func updateToDo(toDo: ToDoItem, title: String, description: String?, isCompleted: Bool) {
+    public func updateToDo(toDo: ToDoItem, title: String, description: String?, createdDate: Date, isCompleted: Bool) {
         toDo.title = title
         toDo.todoDescription = description
+        toDo.createdDate = createdDate
         toDo.isCompleted = isCompleted
         
         saveContext()
