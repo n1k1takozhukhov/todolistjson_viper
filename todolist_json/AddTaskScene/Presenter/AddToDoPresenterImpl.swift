@@ -2,7 +2,7 @@ import Foundation
 
 
 protocol AddPresenterProtocol: AnyObject {
-    func saveToDo(title: String, description: String)
+    func saveToDo(title: String, createdDate: Date, description: String)
 }
 
 final class AddTaskPresenter: AddPresenterProtocol {
@@ -15,8 +15,8 @@ final class AddTaskPresenter: AddPresenterProtocol {
         self.interactor = interactor
     }
     
-    func saveToDo(title: String, description: String) {
-        interactor.addToDoItem(title: title, description: description)
+    func saveToDo(title: String, createdDate: Date, description: String) {
+        interactor.addToDoItem(title: title, createdDate: createdDate, description: description)
     }
 }
 

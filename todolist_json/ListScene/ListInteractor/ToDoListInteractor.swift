@@ -52,7 +52,7 @@ final class ToDoListInteractor: ToDoListInteractorInput {
     
     func updateToDoItem(toDo: ToDoItem, title: String, description: String, isCompleted: Bool) {
         DispatchQueue.global(qos: .background).async {
-            CoreDataManager.shared.updateToDo(toDo: toDo, title: title, description: description, isCompleted: isCompleted)
+            CoreDataManager.shared.updateToDo(toDo: toDo, title: title, createdDate: toDo.createdDate ?? Date(), description: description, isCompleted: isCompleted)
             DispatchQueue.main.async {
                 self.output?.didUpdateToDo()
             }
@@ -72,7 +72,7 @@ final class ToDoListInteractor: ToDoListInteractorInput {
         DispatchQueue.global(qos: .background).async {
             let newStatus = !toDo.isCompleted
             toDo.isCompleted = newStatus
-            CoreDataManager.shared.updateToDo(toDo: toDo, title: toDo.title ?? "", description: toDo.todoDescription, isCompleted: newStatus)
+            CoreDataManager.shared.updateToDo(toDo: toDo, title: toDo.title ?? "", createdDate: toDo.createdDate ?? Date(), description: toDo.todoDescription, isCompleted: newStatus)
             DispatchQueue.main.async {
                 self.output?.didUpdateToDo()
             }

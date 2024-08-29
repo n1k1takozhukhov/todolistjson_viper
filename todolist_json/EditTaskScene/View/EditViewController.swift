@@ -29,8 +29,16 @@ final class EditViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
+        
+        datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     }
-    
+
+    @objc private func dateChanged(_ sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateTextField.text = dateFormatter.string(from: sender.date)
+    }
+
     private func updateUI() {
         title = "Add View"
         view.backgroundColor = .systemBackground
@@ -65,7 +73,8 @@ final class EditViewController: UIViewController {
     
     private func didTapSaveToDo() {
         guard let toDoItem = toDoItem else { return }
-        presenter?.saveToDo(toDoItem: toDoItem, title: titleTextField.text ?? "", description: descriptionTextView.text ?? "")
+        let finalDate = datePicker.date == initCreatedDate ? initCreatedDate : datePicker.date
+        presenter?.saveToDo(toDoItem: toDoItem, title: titleTextField.text ?? "", createdDate: finalDate ?? Date(), description: descriptionTextView.text ?? "")
     }
     
     @objc private func dismissKeyboard() {

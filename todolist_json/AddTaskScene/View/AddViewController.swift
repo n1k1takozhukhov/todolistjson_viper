@@ -28,6 +28,14 @@ final class AddViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGestureRecognizer.cancelsTouchesInView = false
         view.addGestureRecognizer(tapGestureRecognizer)
+        
+        datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
+    }
+
+    @objc private func dateChanged(_ sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateTextField.text = dateFormatter.string(from: sender.date)
     }
     
     private func updateUI() {
@@ -56,7 +64,8 @@ final class AddViewController: UIViewController {
             displayError("Title cannot be empty")
             return
         }
-        presenter?.saveToDo(title: title, description: descriptionTextView.text ?? "")
+        
+        presenter?.saveToDo(title: title, createdDate: datePicker.date, description: descriptionTextView.text ?? "")
     }
     
     @objc private func dismissKeyboard() {

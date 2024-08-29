@@ -73,7 +73,7 @@ public final class CoreDataManager: NSObject {
         }
     }
     
-    public func updateToDo(toDo: ToDoItem, title: String, description: String?, isCompleted: Bool) {
+    public func updateToDo(toDo: ToDoItem, title: String, createdDate: Date, description: String?, isCompleted: Bool) {
         toDo.title = title
         toDo.todoDescription = description
         toDo.isCompleted = isCompleted
