@@ -14,7 +14,12 @@ final class EditInteractor: EditInteractorInput {
     
     func updateToDoItem(toDo: ToDoItem, title: String, createdDate: Date, description: String, isCompleted: Bool) {
         DispatchQueue.global(qos: .background).async { [weak self] in
-            CoreDataManager.shared.updateToDo(toDo: toDo, title: title, createdDate: createdDate, description: description, isCompleted: isCompleted)
+            CoreDataManager.shared.updateToDo(
+                toDo: toDo,
+                title: title,
+                description: description,
+                createdDate: createdDate,
+                isCompleted: isCompleted)
             
             DispatchQueue.main.async {
                 self?.output?.didUpdateToDo()

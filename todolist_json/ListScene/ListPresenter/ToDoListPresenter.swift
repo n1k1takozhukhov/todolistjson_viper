@@ -20,7 +20,9 @@ final class ToDoListPresenter {
     var interactor: ToDoListInteractorInput?
     var router: ToDoListRouter?
     
-    init(view: ToDoListViewProtocol, interactor: ToDoListInteractorInput, router: ToDoListRouter) {
+    init(view: ToDoListViewProtocol,
+         interactor: ToDoListInteractorInput,
+         router: ToDoListRouter) {
         self.view = view
         self.interactor = interactor
         self.router = router

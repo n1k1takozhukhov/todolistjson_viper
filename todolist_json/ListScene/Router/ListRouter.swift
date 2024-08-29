@@ -8,7 +8,10 @@ final class ToDoListRouter {
         let view = ToDoListViewController()
         let interactor = ToDoListInteractor()
         let router = ToDoListRouter()
-        let presenter = ToDoListPresenter(view: view, interactor: interactor, router: router)
+        let presenter = ToDoListPresenter(
+            view: view,
+            interactor: interactor,
+            router: router)
         
         view.presenter = presenter
         interactor.output = presenter

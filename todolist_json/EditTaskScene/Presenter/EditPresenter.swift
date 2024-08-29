@@ -15,7 +15,12 @@ final class EditPresenter: EditPresenterProtocol {
     }
     
     func saveToDo(toDoItem: ToDoItem, title: String, createdDate: Date, description: String) {
-        interactor.updateToDoItem(toDo: toDoItem, title: title, createdDate: toDoItem.createdDate ?? Date(), description: description, isCompleted: toDoItem.isCompleted)
+        interactor.updateToDoItem(
+            toDo: toDoItem,
+            title: title,
+            createdDate: createdDate,
+            description: description,
+            isCompleted: toDoItem.isCompleted)
     }
 }
 

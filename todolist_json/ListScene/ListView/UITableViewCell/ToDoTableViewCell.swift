@@ -29,7 +29,7 @@ final class ToDoTableViewCell: UITableViewCell {
         descriptionLabel.text = todo.todoDescription
         let buttonImageName = todo.isCompleted ? "paperplane.fill" : "paperplane"
         completedImage.image = UIImage(systemName: buttonImageName)
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         dateLabel.text = dateFormatter.string(from: todo.createdDate ?? Date())
