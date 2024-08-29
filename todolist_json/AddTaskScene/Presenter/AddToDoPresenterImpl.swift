@@ -16,7 +16,10 @@ final class AddTaskPresenter: AddPresenterProtocol {
     }
     
     func saveToDo(title: String, createdDate: Date, description: String) {
-        interactor.addToDoItem(title: title, createdDate: createdDate, description: description)
+        interactor.addToDoItem(
+            title: title,
+            createdDate: createdDate,
+            description: description)
     }
 }
 

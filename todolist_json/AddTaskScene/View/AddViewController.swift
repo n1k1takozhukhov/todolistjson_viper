@@ -31,7 +31,7 @@ final class AddViewController: UIViewController {
         
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     }
-
+    
     @objc private func dateChanged(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -65,7 +65,10 @@ final class AddViewController: UIViewController {
             return
         }
         
-        presenter?.saveToDo(title: title, createdDate: datePicker.date, description: descriptionTextView.text ?? "")
+        presenter?.saveToDo(
+            title: title,
+            createdDate: datePicker.date,
+            description: descriptionTextView.text ?? "")
     }
     
     @objc private func dismissKeyboard() {

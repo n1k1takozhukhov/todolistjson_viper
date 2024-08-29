@@ -11,7 +11,7 @@ final class EditViewController: UIViewController {
     var rootPresenter: ToDoListPresenter?
     var toDoItem: ToDoItem?
     private var initCreatedDate: Date?
-
+    
     private let toDoTitleLabel = makeTitleLabel()
     private let titleTextField = makeTextField()
     private let dateTitleLabel = makeTitleLabel()
@@ -32,13 +32,13 @@ final class EditViewController: UIViewController {
         
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     }
-
+    
     @objc private func dateChanged(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateTextField.text = dateFormatter.string(from: sender.date)
     }
-
+    
     private func updateUI() {
         title = "Add View"
         view.backgroundColor = .systemBackground
@@ -51,7 +51,7 @@ final class EditViewController: UIViewController {
         
         titleTextField.text = toDoItem?.title
         descriptionTextView.text = toDoItem?.todoDescription
-
+        
         saveButton.setTitle("Save", for: .normal)
         saveButton.addAction(UIAction { [weak self] _ in
             guard let self = self else { return }
@@ -68,13 +68,17 @@ final class EditViewController: UIViewController {
         } else {
             dateTextField.text = nil
         }
-
+        
     }
     
     private func didTapSaveToDo() {
         guard let toDoItem = toDoItem else { return }
         let finalDate = datePicker.date == initCreatedDate ? initCreatedDate : datePicker.date
-        presenter?.saveToDo(toDoItem: toDoItem, title: titleTextField.text ?? "", createdDate: finalDate ?? Date(), description: descriptionTextView.text ?? "")
+        presenter?.saveToDo(
+            toDoItem: toDoItem,
+            title: titleTextField.text ?? "",
+            createdDate: finalDate ?? Date(),
+            description: descriptionTextView.text ?? "")
     }
     
     @objc private func dismissKeyboard() {
