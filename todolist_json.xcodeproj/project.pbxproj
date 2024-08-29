@@ -274,6 +274,15 @@
 			path = UITableViewCell;
 			sourceTree = "<group>";
 		};
+		8DB2C2B32C805AAD00C96AFA /* Support File */ = {
+			isa = PBXGroup;
+			children = (
+				8DD786D32C7F115000736CBF /* Assets.xcassets */,
+				8DD786D82C7F115000736CBF /* Info.plist */,
+			);
+			path = "Support File";
+			sourceTree = "<group>";
+		};
 		8DD786BB2C7F114E00736CBF = {
 			isa = PBXGroup;
 			children = (
@@ -301,8 +310,7 @@
 				8D5509032C7F1506000BE90A /* EditTaskScene */,
 				8D5508F62C7F14D2000BE90A /* AddTaskScene */,
 				8D5508E42C7F1473000BE90A /* ListScene */,
-				8DD786D32C7F115000736CBF /* Assets.xcassets */,
-				8DD786D82C7F115000736CBF /* Info.plist */,
+				8DB2C2B32C805AAD00C96AFA /* Support File */,
 			);
 			path = todolist_json;
 			sourceTree = "<group>";
@@ -637,7 +645,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V36RW5TG62;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = todolist_json/Info.plist;
+				INFOPLIST_FILE = "todolist_json/Support File/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -664,7 +672,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = V36RW5TG62;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = todolist_json/Info.plist;
+				INFOPLIST_FILE = "todolist_json/Support File/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

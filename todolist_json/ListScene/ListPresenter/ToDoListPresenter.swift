@@ -14,10 +14,7 @@ protocol ToDoListPresenterInput {
     func toggleComplete(_ toDo: ToDoItem)
 }
 
-
-// MARK: - Presenter
-
-class ToDoListPresenter {
+final class ToDoListPresenter {
     
     weak var view: ToDoListViewProtocol?
     var interactor: ToDoListInteractorInput?
@@ -29,9 +26,6 @@ class ToDoListPresenter {
         self.router = router
     }
 }
-
-
-// MARK: - Interactor Input
 
 extension ToDoListPresenter: ToDoListPresenterInput {
     func viewDidLoad() {
@@ -58,9 +52,6 @@ extension ToDoListPresenter: ToDoListPresenterInput {
         interactor?.toggleComplete(toDo)
     }
 }
-
-
-// MARK: - Interactor Output
 
 extension ToDoListPresenter: ToDoListInteractorOutput {
     func didFetchToDos(_ toDos: [ToDoItem]) {

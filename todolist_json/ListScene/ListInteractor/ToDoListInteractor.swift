@@ -13,17 +13,15 @@ protocol ToDoListInteractorOutput: AnyObject {
     func didUpdateToDo()
 }
 
-class ToDoListInteractor: ToDoListInteractorInput {
+final class ToDoListInteractor: ToDoListInteractorInput {
     weak var output: ToDoListInteractorOutput?
     
     func fetchToDo() {
         DispatchQueue.global(qos: .background).async {
             var toDos: [ToDoItem] = []
             
-            // Check UserDefaults to see if this is the first launch
             let hasFetchToDo = UserDefaults.standard.bool(forKey: "hasFetchToDo")
             if !hasFetchToDo {
-                // Fetch todos from API
                 CoreDataManager.shared.firstFetchToDos { result in
                     switch result {
                     case .success(let todos):
@@ -32,7 +30,6 @@ class ToDoListInteractor: ToDoListInteractorInput {
                         toDos = CoreDataManager.shared.fetchToDo()
                     }
                 }
-                // Mark that firstFetchToDos has been called
                 UserDefaults.standard.set(true, forKey: "hasFetchToDo")
             } else {
                 toDos = CoreDataManager.shared.fetchToDo()

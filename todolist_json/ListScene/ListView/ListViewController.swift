@@ -1,6 +1,6 @@
 import UIKit
 
-class ToDoListViewController: UIViewController {
+final class ToDoListViewController: UIViewController {
     
     var presenter: ToDoListPresenter?
     var todo: [ToDoItem] = []
@@ -41,7 +41,6 @@ extension ToDoListViewController: ToDoListViewProtocol {
         print("Error showing todos.")
     }
 }
-
 
 //MARK: - UITableView
 extension ToDoListViewController: UITableViewDataSource {
@@ -121,4 +120,3 @@ private extension ToDoListViewController {
         return view
     }
 }
-
