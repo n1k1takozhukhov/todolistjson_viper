@@ -1,6 +1,6 @@
 import UIKit
 
-final class ToDoListRouter {
+class ToDoListRouter {
     
     weak var viewController: UIViewController?
     
